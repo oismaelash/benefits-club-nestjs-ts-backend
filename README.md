@@ -60,23 +60,8 @@ src/
    ```
 
 3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   ```
    
-   Edit the `.env` file with your configuration:
-   ```env
-   NODE_ENV=development
-   PORT=3000
-   DATABASE_URL=mongodb://localhost:27017/benefits-club
-   JWT_SECRET=your-super-secret-jwt-key-here
-   JWT_EXPIRES_IN=24h
-   REDIS_HOST=localhost
-   REDIS_PORT=6379
-   REDIS_PASSWORD=
-   REDIS_DB=0
-   REDIS_TTL=300
-   ```
+   Edit the `.env` file with your configuration
 
 4. **Start MongoDB and Redis**
    Make sure MongoDB and Redis are running on your system.
@@ -319,8 +304,6 @@ The application includes Redis caching for statistics endpoints:
 - **Cache Invalidation**: Manual cache invalidation endpoints
 - **Performance**: 90%+ response time improvement for cached data
 
-See `docs/redis-caching.md` for detailed caching documentation.
-
 ## Security Features
 
 - **JWT Authentication** - Secure token-based authentication
@@ -353,21 +336,26 @@ npm run test:cov
 
 ## Deployment
 
-### Production Build
+### Docker Deployment (Recommended)
+
+The application includes comprehensive Docker support.
+
+#### Quick Start with Docker
+```bash
+docker-compose up -d --build
+```
+
+#### Docker Services
+- **NestJS API**: Port 3000
+- **MongoDB**: Port 27017 (with admin interface on 8081)
+- **Redis Cache**: Port 6379 (with admin interface on 8082)
+
+### Traditional Deployment
+
+#### Production Build
 ```bash
 npm run build
 npm run start:prod
-```
-
-### Docker (Optional)
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY dist ./dist
-EXPOSE 3000
-CMD ["node", "dist/main"]
 ```
 
 ## Contributing
