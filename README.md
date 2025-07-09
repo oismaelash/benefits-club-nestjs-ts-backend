@@ -85,7 +85,7 @@ Once the application is running, you can access the Swagger documentation at:
 ## Complete API Endpoints
 
 ### Health Check
-- **GET** `/health` - Check if the API is online
+- **GET** `/api` - Check if the API is online
 
 ### Authentication Module
 - **POST** `/auth/login` - User authentication
